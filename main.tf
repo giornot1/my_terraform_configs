@@ -43,18 +43,5 @@ resource "random_id" "bucket_prefix" {
   byte_length = 8
 }
 
-#resource "google_storage_bucket" "terraform_store_config" {
-  name          = "${random_id.bucket_prefix.hex}-bucket-tfstate"
-  force_destroy = false
-  location      = "us-central1"
-  storage_class = "STANDARD"
-  versioning {
-    enabled = true
-  }
-  encryption {
-    default_kms_key_name = google_kms_crypto_key.nengu_crypto_key.id  # Updated this line
-  }
-  # The `depends_on` block for `google_project_iam_member.default` was removed as it was commented in the original code.
-}
 
 
